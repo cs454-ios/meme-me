@@ -23,18 +23,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
-
-    }
+//    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
+//
+//    }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
         }
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
