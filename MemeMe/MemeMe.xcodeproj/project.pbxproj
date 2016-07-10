@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D7E087121D2C28C400F85F01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E087111D2C28C400F85F01 /* AppDelegate.swift */; };
-		D7E087141D2C28C400F85F01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E087131D2C28C400F85F01 /* ViewController.swift */; };
+		D7E087141D2C28C400F85F01 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E087131D2C28C400F85F01 /* MemeEditorViewController.swift */; };
 		D7E087171D2C28C400F85F01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E087151D2C28C400F85F01 /* Main.storyboard */; };
 		D7E087191D2C28C400F85F01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E087181D2C28C400F85F01 /* Assets.xcassets */; };
 		D7E0871C1D2C28C400F85F01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E0871A1D2C28C400F85F01 /* LaunchScreen.storyboard */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		D7E0870E1D2C28C400F85F01 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E087111D2C28C400F85F01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7E087131D2C28C400F85F01 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D7E087131D2C28C400F85F01 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
 		D7E087161D2C28C400F85F01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7E087181D2C28C400F85F01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7E0871B1D2C28C400F85F01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				D7E087111D2C28C400F85F01 /* AppDelegate.swift */,
-				D7E087131D2C28C400F85F01 /* ViewController.swift */,
+				D7E087131D2C28C400F85F01 /* MemeEditorViewController.swift */,
 				D7E087151D2C28C400F85F01 /* Main.storyboard */,
 				D7E087181D2C28C400F85F01 /* Assets.xcassets */,
 				D7E0871A1D2C28C400F85F01 /* LaunchScreen.storyboard */,
@@ -193,6 +193,7 @@
 				TargetAttributes = {
 					D7E0870D1D2C28C400F85F01 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 3U9JU27MFT;
 					};
 					D7E087211D2C28C400F85F01 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -256,7 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7E087141D2C28C400F85F01 /* ViewController.swift in Sources */,
+				D7E087141D2C28C400F85F01 /* MemeEditorViewController.swift in Sources */,
 				D7E087121D2C28C400F85F01 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,10 +400,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MemeMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.csula.jeanne.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -410,10 +414,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MemeMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.csula.jeanne.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -8,14 +8,33 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : -3.0
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        topTextField.delegate = self
+        topTextField.text = "TOP"
+        topTextField.textAlignment = NSTextAlignment.Center
+        topTextField.defaultTextAttributes = memeTextAttributes
+        
+        bottomTextField.delegate = self
+        bottomTextField.text = "BOTTOM"
+        bottomTextField.textAlignment = NSTextAlignment.Center
+        bottomTextField.defaultTextAttributes = memeTextAttributes
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,6 +67,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
 
