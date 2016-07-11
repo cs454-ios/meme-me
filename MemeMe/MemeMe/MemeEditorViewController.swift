@@ -152,6 +152,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func shareImage(sender: AnyObject) {
+        
+//        let activityViewController = UIActivityViewController()
     }
     
 }
