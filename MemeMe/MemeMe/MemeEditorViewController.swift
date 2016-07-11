@@ -12,6 +12,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
@@ -56,6 +57,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         }
+        
+        if imagePickerView.image == nil {
+            shareButton.enabled = false
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -79,6 +84,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            shareButton.enabled = true
             imagePickerView.image = image
         }
         
@@ -125,9 +131,28 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func save() {
-        //Create the meme
-//        let meme = Meme( text: textField.text!, image: imageView.image, memedImage: memedImage)
+    func generateMemedImage() -> UIImage {
+        // TODO: Hide toolbar and navbar
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // TODO:  Show toolbar and navbar       
+        
+        return memedImage
     }
+    
+    func save() -> Meme {
+        //Create the meme
+        let memedImage = generateMemedImage()
+        return Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
+    }
+    
+    @IBAction func shareImage(sender: AnyObject) {
+    }
+    
 }
 
