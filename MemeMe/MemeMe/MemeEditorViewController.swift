@@ -22,6 +22,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeWidthAttributeName : -3.0
     ]
     
+    struct Meme {
+        var topText, bottomText: String
+        var originalImage, memedImage: UIImage
+        
+        init(topText: String, bottomText: String, originalImage: UIImage, memedImage: UIImage) {
+            self.topText = topText
+            self.bottomText = bottomText
+            self.originalImage = originalImage
+            self.memedImage = memedImage
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -38,9 +50,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+        
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
     }
 
     @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
@@ -79,6 +99,35 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func save() {
+        //Create the meme
+//        let meme = Meme( text: textField.text!, image: imageView.image, memedImage: memedImage)
     }
 }
 
