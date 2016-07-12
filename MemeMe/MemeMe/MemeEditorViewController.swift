@@ -152,8 +152,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func shareImage(sender: AnyObject) {
+        let activityItem: [AnyObject] = [generateMemedImage() as AnyObject]
+        let activityViewController = UIActivityViewController(activityItems: activityItem as [AnyObject], applicationActivities: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
+//        activityViewController.completionWithItemsHandler {
+//            (UIActivityTypePostToFacebook, true, nil) in {
+//                save()
+//            }
+//        }
         
-//        let activityViewController = UIActivityViewController()
+//        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
