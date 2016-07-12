@@ -90,10 +90,12 @@
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="jm8-Gn-gJZ" id="1o2-44-Pn2"/>
+                        <outlet property="bottomToolbar" destination="W5W-wE-5p4" id="hyf-4v-lzv"/>
                         <outlet property="cameraButton" destination="qV2-fh-0ll" id="DMO-5j-L9c"/>
                         <outlet property="imagePickerView" destination="e8R-yQ-DWZ" id="VOs-2p-tqx"/>
                         <outlet property="shareButton" destination="S32-cI-cub" id="ECF-Fd-8xm"/>
                         <outlet property="topTextField" destination="Cst-gx-Ttk" id="AEi-em-Wso"/>
+                        <outlet property="topToolbar" destination="bnX-eV-Vnx" id="aOm-wG-iNJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
